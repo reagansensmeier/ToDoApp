@@ -1,11 +1,15 @@
 import React from "react"
-import Form from "./Form"
-import Button from "./Button"
-import Input from "./Input"
+import Form from "./ui/Form"
+import Button from "./ui/Button"
+import Input from "./ui/Input"
+import { create } from "@/actions/todoActions"
 
 const AddTodo = () => {
     return (
-        <Form className="w-1/2 m-auto">
+        <Form 
+            className="w-1/2 m-auto"
+            action={create}
+        >
             <div className="flex">
                 <Input
                     name="input"
