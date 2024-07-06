@@ -5,9 +5,15 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// datasource db {
+//   provider = "sqlite"
+//   url      = env("DATABASE_URL")
+// }
+
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model TodoItem {
@@ -16,16 +22,28 @@ model TodoItem {
   isCompleted Boolean   @default(false)
   isPending   Boolean   @default(false)
   isUpdated   Boolean   @default(false)
-  // list TodoList? @relation(fields: [title], references: [id])
+  // list        TodoList? @relation(fields: [listId], references: [id])
+  // listId      String
   createdAt   DateTime  @default(now()) @map(name: "created_at")
   updatedAt   DateTime? @updatedAt @map(name: "updated_at")
 }
 
 // model TodoList {
-//   id String @default(uuid()) @id
-//   title String
-//   items TodoItem[]
-//slug string
-//   createdAt     DateTime  @default(now()) @map(name: "created_at")
-//   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+//   id        String     @id @default(uuid())
+//   title     String
+//   items     TodoItem[]
+//   slug      String     @unique
+//   user      User       @relation(fields: [userId], references: [id])
+//   userId    String
+//   createdAt DateTime   @default(now()) @map(name: "created_at")
+//   updatedAt DateTime   @updatedAt @map(name: "updated_at")
+
+//   @@index(slug)
+// }
+
+// model User {
+//   id             String     @id @default(uuid())
+//   email          String     @unique
+//   hashedPassword String
+//   lists          TodoList[]
 // }
