@@ -63,6 +63,21 @@ export async function edit(formData: FormData) {
   revalidatePath("/");
 }
 
+export async function pending(formData: FormData) {
+  const inputID = formData.get("inputId") as string;
+
+  await prisma.todoItem.update({
+    where: {
+      id: inputID,
+    },
+    data: {
+      isPending: true,
+    },
+  });
+
+  revalidatePath("/");
+}
+
 export async function deleteTodo(formData: FormData) {
   const inputID = formData.get("inputId") as string;
 
