@@ -27,25 +27,29 @@ const EditTodo: React.FC<EditTodoProps> = ({ todo, onSubmit }) => {
 
   return (
     <div className="flex items-center space-x-2">
-      <Button onClick={handleEdit}>
-        <BiEdit />
-      </Button>
+      {!editTodo && (
+        <Button onClick={handleEdit}>
+          <BiEdit />
+        </Button>
+      )}
 
       {editTodo && (
-        <Form
-          action={edit}
-          onSubmit={handleSubmit}
-          className="flex items-center"
-        >
-          <Input name="inputId" value={todo.id} type="hidden" />
-          <Input
-            type="text"
-            name="newTitle"
-            placeholder="Edit Todo..."
-            className="border border-gray-300 rounded-md p-2"
-          />
-          <Button type="submit"> Save</Button>
-        </Form>
+        <div className="flex items-center space-x-2">
+          <Form
+            action={edit}
+            onSubmit={handleSubmit}
+            className="flex items-center"
+          >
+            <Input name="inputId" value={todo.id} type="hidden" />
+            <Input
+              type="text"
+              name="newTitle"
+              placeholder="Edit Todo..."
+              className="border border-gray-300 rounded-md p-2"
+            />
+            <Button type="submit"> Save</Button>
+          </Form>
+        </div>
       )}
     </div>
   );
