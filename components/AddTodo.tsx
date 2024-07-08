@@ -1,7 +1,7 @@
 import React from "react";
-import Form from "./ui/Form";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import Form from "@/components/ui/Form";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { create } from "@/actions/todoActions";
 
 const AddTodo = () => {

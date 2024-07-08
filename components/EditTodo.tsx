@@ -1,8 +1,8 @@
 import * as React from "react";
 import { BiEdit } from "react-icons/bi";
-import Form from "./ui/Form";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import Form from "@/components/ui/Form";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { edit } from "@/actions/todoActions";
 import { todoType } from "@/lib/todoTypes";
 

@@ -1,7 +1,7 @@
 import { pending } from "@/actions/todoActions";
-import Form from "./ui/Form";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import Form from "@/components/ui/Form";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { TbProgress } from "react-icons/tb";
 import { todoType } from "@/lib/todoTypes";
 
