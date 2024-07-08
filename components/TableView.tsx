@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
-import { Input } from "./ui/input";
+import { Input } from "@/components/ui/input";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -22,7 +22,7 @@ import {
   TableRow,
   TableHeader,
 } from "@/components/ui/table";
-import Todo from "./Todo";
+import Todo from "@/components/Todo";
 import { todoType } from "@/lib/todoTypes";
 
 interface DataTableProps {
