@@ -31,20 +31,16 @@ export async function complete(formData: FormData) {
     return;
   }
 
-  const updadtedStatus = !todo?.isCompleted;
-
   await prisma.todoItem.update({
     where: {
       id: inputId,
     },
     data: {
-      isCompleted: updadtedStatus,
+      taskStatus: "Completed",
     },
   });
 
   revalidatePath("/");
-
-  return updadtedStatus;
 }
 
 export async function edit(formData: FormData) {
@@ -71,7 +67,7 @@ export async function pending(formData: FormData) {
       id: inputID,
     },
     data: {
-      isPending: true,
+      taskStatus: "Pending",
     },
   });
 

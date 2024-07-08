@@ -1,18 +1,21 @@
-"use client";
-
-import { edit } from "@/actions/todoActions";
-import Form from "./ui/Form";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
+import * as React from "react";
 import { BiEdit } from "react-icons/bi";
+import Form from "./ui/Form";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { edit } from "@/actions/todoActions";
 import { todoType } from "@/lib/todoTypes";
-import { useState } from "react";
 
-const EditTodo = ({ todo }: { todo: todoType }) => {
-  const [editTodo, setEditTodo] = useState(false);
+interface EditTodoProps {
+  todo: todoType;
+  onSubmit?: () => void; // Ensure onSubmit is defined as a function or optional
+}
+
+const EditTodo: React.FC<EditTodoProps> = ({ todo, onSubmit }) => {
+  const [editTodo, setEditTodo] = React.useState(false);
 
   const handleEdit = () => {
-    if (todo.isCompleted === true) {
+    if (todo.taskStatus === "Completed") {
       return;
     }
     setEditTodo(!editTodo);
@@ -20,21 +23,33 @@ const EditTodo = ({ todo }: { todo: todoType }) => {
 
   const handleSubmit = () => {
     setEditTodo(false);
+    if (onSubmit) {
+      onSubmit(); // Call onSubmit if it's defined
+    }
   };
+
   return (
-    <div className="flex gap-5 items-center">
-      <Button onClick={handleEdit} text={<BiEdit />} actionButton />
+    <div className="flex items-center space-x-2">
+      <Button onClick={handleEdit}>
+        <BiEdit />
+      </Button>
 
-      {editTodo ? (
-        <Form action={edit} onSubmit={handleSubmit}>
+      {editTodo && (
+        <Form
+          action={edit}
+          onSubmit={handleSubmit}
+          className="flex items-center"
+        >
           <Input name="inputId" value={todo.id} type="hidden" />
-          <div className="flex justify-center">
-            <Input type="text" name="newTitle" placeholder="Edit Todo..." />
-
-            <Button type="submit" text="Save" />
-          </div>
+          <Input
+            type="text"
+            name="newTitle"
+            placeholder="Edit Todo..."
+            className="border border-gray-300 rounded-md p-2"
+          />
+          <Button type="submit"> Save</Button>
         </Form>
-      ) : null}
+      )}
     </div>
   );
 };

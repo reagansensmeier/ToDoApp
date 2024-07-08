@@ -1,21 +1,19 @@
 import { complete } from "@/actions/todoActions";
 import Form from "./ui/Form";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { todoType } from "@/lib/todoTypes";
 
 const CompleteTodo = ({ todo }: { todo: todoType }) => {
+  const style = todo.taskStatus === "Completed" ? "default" : "outline";
   return (
     <Form action={complete}>
-      <Input
-        name="inputId"
-        value={todo.id}
-        className="border-gray-700 border"
-        type="hidden"
-      />
+      <Input name="inputId" value={todo.id} type="hidden" />
 
-      <Button actionButton type="submit" text={<AiOutlineCheckCircle />} />
+      <Button variant={style} size="icon" type="submit">
+        {<AiOutlineCheckCircle />}
+      </Button>
     </Form>
   );
 };

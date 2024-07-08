@@ -1,11 +1,12 @@
 import { pending } from "@/actions/todoActions";
 import Form from "./ui/Form";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 import { TbProgress } from "react-icons/tb";
 import { todoType } from "@/lib/todoTypes";
 
 const PendingTodo = ({ todo }: { todo: todoType }) => {
+  const style = todo.taskStatus === "Pending" ? "default" : "outline";
   return (
     <Form action={pending}>
       <Input
@@ -15,7 +16,9 @@ const PendingTodo = ({ todo }: { todo: todoType }) => {
         type="hidden"
       />
 
-      <Button actionButton type="button" text={<TbProgress />} />
+      <Button variant={style}>
+        <TbProgress />
+      </Button>
     </Form>
   );
 };

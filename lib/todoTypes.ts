@@ -1,9 +1,6 @@
 export type todoType = {
-    id: string;
-    title?: string | null;
-    isCompleted: boolean;
-    isPending: boolean;
-    isUpdated: boolean;
-    updatedAt?: Date | null;
-    createdAt?: Date;
-  };
+  id: string;
+  title: string | null;
+  taskStatus: "Todo" | "Pending" | "Completed" | "Deleted";
+  createdAt: Date;
+};
