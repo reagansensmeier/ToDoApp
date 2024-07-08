@@ -22,7 +22,7 @@ import {
   TableRow,
   TableHeader,
 } from "@/components/ui/table";
-import Todo from "./Todo"; // Import the refactored Todo component
+import Todo from "./Todo";
 import { todoType } from "@/lib/todoTypes";
 
 interface DataTableProps {

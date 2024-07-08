@@ -8,7 +8,7 @@ import { todoType } from "@/lib/todoTypes";
 
 interface EditTodoProps {
   todo: todoType;
-  onSubmit?: () => void; // Ensure onSubmit is defined as a function or optional
+  onSubmit?: () => void;
 }
 
 const EditTodo: React.FC<EditTodoProps> = ({ todo, onSubmit }) => {
@@ -23,9 +23,6 @@ const EditTodo: React.FC<EditTodoProps> = ({ todo, onSubmit }) => {
 
   const handleSubmit = () => {
     setEditTodo(false);
-    if (onSubmit) {
-      onSubmit(); // Call onSubmit if it's defined
-    }
   };
 
   return (
